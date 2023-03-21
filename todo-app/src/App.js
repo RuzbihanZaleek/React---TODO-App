@@ -36,11 +36,19 @@ function App() {
     })
   }
 
+  function renameTasks(index, newName) {
+    setTasks(prev => {
+      const newTask = [...prev]
+      newTask[index].name = newName;
+      return newTask;
+    })
+  }
+
   function getMessage() {
 
     const percentage = completed / total * 100;
     if (percentage === 0) return 'Complete at least one 👍';
-    if (percentage === 10) return 'Nice job for today 👌';
+    if (percentage === 100) return 'Nice job for today 👌';
     return 'Keep it going 💪';
   }
 
@@ -55,6 +63,7 @@ function App() {
       {tasks.map((task, index) => (
         <Task {...task}
           onTrash={() => deleteTasks(index)}
+          onRename={(newTask) => renameTasks(index, newTask)}
           onToggle={done => updateTaskDone(index, done)} />))}
     </main>
   );
