@@ -30,12 +30,18 @@ function App() {
     })
   }
 
+  function deleteTasks(indexToRemove) {
+    setTasks(prev => {
+      return prev.filter((taskObject, index) => index !== indexToRemove)
+    })
+  }
+
   function getMessage() {
 
     const percentage = completed / total * 100;
     if (percentage === 0) return 'Complete at least one 👍';
     if (percentage === 10) return 'Nice job for today 👌';
-    return 'Keep it going awesome 💪';
+    return 'Keep it going 💪';
   }
 
   const completed = tasks.filter(t => t.done).length;
@@ -46,7 +52,10 @@ function App() {
       <h1>{completed}/{total} Completed</h1>
       <h2>{getMessage()}</h2>
       <TaskForm onAdd={addTask} />
-      {tasks.map((task, index) => (<Task {...task} onToggle={done => updateTaskDone(index, done)} />))}
+      {tasks.map((task, index) => (
+        <Task {...task}
+          onTrash={() => deleteTasks(index)}
+          onToggle={done => updateTaskDone(index, done)} />))}
     </main>
   );
 }
