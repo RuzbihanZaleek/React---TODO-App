@@ -14,7 +14,7 @@ function TaskForm({ onAdd }) {
             <button>+</button>
             <input
                 type="text"
-                placeholder='Your next task..'
+                placeholder='Your next task dude..'
                 value={taskName}
                 onChange={e => setTaskName(e.target.value)} />
         </form>
