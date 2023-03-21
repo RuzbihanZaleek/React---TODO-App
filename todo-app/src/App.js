@@ -22,10 +22,31 @@ function App() {
     });
   }
 
+  function updateTaskDone(taskIndex, newDone) {
+    setTasks(prev => {
+      const newTask = [...prev];
+      newTask[taskIndex].done = newDone;
+      return newTask;
+    })
+  }
+
+  function getMessage() {
+
+    const percentage = completed / total * 100;
+    if (percentage === 0) return 'Complete at least one 👍';
+    if (percentage === 10) return 'Nice job for today 👌';
+    return 'Keep it going 💪';
+  }
+
+  const completed = tasks.filter(t => t.done).length;
+  const total = tasks.length;
+
   return (
     <main>
+      <h1>{completed}/{total} Completed</h1>
+      <h2>{getMessage()}</h2>
       <TaskForm onAdd={addTask} />
-      {tasks.map((task) => (<Task {...task} />))}
+      {tasks.map((task, index) => (<Task {...task} onToggle={done => updateTaskDone(index, done)} />))}
     </main>
   );
 }
