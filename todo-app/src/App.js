@@ -35,7 +35,7 @@ function App() {
     const percentage = completed / total * 100;
     if (percentage === 0) return 'Complete at least one 👍';
     if (percentage === 10) return 'Nice job for today 👌';
-    return 'Keep it going dude 💪';
+    return 'Keep it going awesome 💪';
   }
 
   const completed = tasks.filter(t => t.done).length;
