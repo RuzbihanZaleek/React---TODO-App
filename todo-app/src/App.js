@@ -6,6 +6,7 @@ import TaskForm from './TaskForm';
 function App() {
   const [tasks, setTasks] = useState([]);
 
+  //use effect
   useEffect(() => {
     if (tasks.length === 0) return;
     localStorage.setItem('tasks', JSON.stringify(tasks))
